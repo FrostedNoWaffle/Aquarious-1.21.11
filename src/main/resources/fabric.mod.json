@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "aquarious",
+	"version": "${version}",
+	"name": "Aquarious",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/aquarious/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.frosted.aquarious.Aquarious"
+		],
+		"fabric-datagen": [
+			"net.frosted.aquarious.AquariousDataGenerator"
+		],
+      "client": [
+        "net.frosted.aquarious.AquariousClient"
+      ]
+	},
+	"mixins": [
+		"aquarious.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
