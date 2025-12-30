@@ -2,22 +2,25 @@ package net.frosted.aquarious.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 import org.jspecify.annotations.Nullable;
+
+import static net.minecraft.block.WallMountedBlock.FACE;
 
 /** Made with the help of "Angling" by Eightsidedsquare<a href="https://github.com/8s2/Angling">...</a> */
 public class Starfish extends FacingBlock implements Waterloggable {
@@ -27,7 +30,7 @@ public class Starfish extends FacingBlock implements Waterloggable {
 
     public Starfish(Settings settings) {
         super(settings);
-        setDefaultState(getDefaultState().with(FACING, Direction.random(Random.create())).with(WATERLOGGED, false));
+        setDefaultState(getDefaultState().with(FACING, Direction.UP).with(WATERLOGGED, false));
     }
 
     @Override
@@ -61,7 +64,7 @@ public class Starfish extends FacingBlock implements Waterloggable {
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
         boolean bl = fluidState.getFluid() == Fluids.WATER;
-        return getDefaultState().with(WATERLOGGED, bl).with(FACING, ctx.getSide()).rotate(BlockRotation.random(Random.create()));
+        return getDefaultState().with(WATERLOGGED, bl).with(FACING, ctx.getSide());
     }
 
     public FluidState getFluidState(BlockState state) {
@@ -70,6 +73,6 @@ public class Starfish extends FacingBlock implements Waterloggable {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING, WATERLOGGED);
+        builder.add(FACING, WATERLOGGED, FACE);
     }
 }

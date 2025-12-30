@@ -10,7 +10,8 @@
             "state": {
               "Name": "aquarious:starfish",
               "Properties": {
-                "facing": "south",
+                "face": "floor",
+                "facing": "up",
                 "waterlogged": "false"
               }
             }
