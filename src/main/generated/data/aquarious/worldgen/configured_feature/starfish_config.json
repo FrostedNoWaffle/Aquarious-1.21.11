@@ -11,7 +11,7 @@
               "Name": "aquarious:starfish",
               "Properties": {
                 "face": "floor",
-                "facing": "up",
+                "facing": "north",
                 "waterlogged": "false"
               }
             }

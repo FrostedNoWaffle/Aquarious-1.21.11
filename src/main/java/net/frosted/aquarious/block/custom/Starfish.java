@@ -2,11 +2,10 @@ package net.frosted.aquarious.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.block.enums.BlockFace;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -15,7 +14,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 import org.jspecify.annotations.Nullable;
@@ -30,7 +28,7 @@ public class Starfish extends FacingBlock implements Waterloggable {
 
     public Starfish(Settings settings) {
         super(settings);
-        setDefaultState(getDefaultState().with(FACING, Direction.UP).with(WATERLOGGED, false));
+        setDefaultState(getDefaultState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
     }
 
     @Override
@@ -62,9 +60,10 @@ public class Starfish extends FacingBlock implements Waterloggable {
 
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
+        Direction face = ctx.getSide();
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
         boolean bl = fluidState.getFluid() == Fluids.WATER;
-        return getDefaultState().with(WATERLOGGED, bl).with(FACING, ctx.getSide());
+        return getDefaultState().with(FACING, face).with(WATERLOGGED, bl);
     }
 
     public FluidState getFluidState(BlockState state) {
