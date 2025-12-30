@@ -6,7 +6,6 @@ import net.frosted.aquarious.block.ModBlocks;
 import net.frosted.aquarious.item.ModItems;
 import net.minecraft.client.data.BlockStateModelGenerator;
 import net.minecraft.client.data.ItemModelGenerator;
-import net.minecraft.client.data.Model;
 import net.minecraft.client.data.Models;
 
 public class ModModelProvider extends FabricModelProvider {
@@ -17,7 +16,6 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PALM);
-        blockStateModelGenerator.registerNorthDefaultHorizontalRotatable(ModBlocks.STARFISH);
     }
 
     @Override

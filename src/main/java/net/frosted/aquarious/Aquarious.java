@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 
 import net.frosted.aquarious.block.ModBlocks;
 import net.frosted.aquarious.item.ModItems;
+import net.frosted.aquarious.world.ModWorldGeneration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,5 +17,6 @@ public class Aquarious implements ModInitializer {
         ModCreativeTab.registerCreativeTab();
         ModBlocks.registerModBlocks();
         ModItems.registerModItems();
+        ModWorldGeneration.generateModWorldGen();
 	}
 }
