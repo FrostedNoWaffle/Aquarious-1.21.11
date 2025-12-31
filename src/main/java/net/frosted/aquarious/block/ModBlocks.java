@@ -4,7 +4,6 @@ import net.frosted.aquarious.Aquarious;
 import net.frosted.aquarious.block.custom.Starfish;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -26,12 +25,11 @@ public class ModBlocks {
 
     public static final Block STARFISH = registerBlock("starfish",properties ->
             new Starfish(properties
-                    .sounds(BlockSoundGroup.BONE)
+                    .sounds(BlockSoundGroup.CORAL)
                     .breakInstantly()
                     .nonOpaque()
                     .dynamicBounds()
                     .pistonBehavior(PistonBehavior.DESTROY)
-                    .offset(AbstractBlock.OffsetType.XZ)
                     .noCollision()
             ));
 

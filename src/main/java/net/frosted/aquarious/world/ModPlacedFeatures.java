@@ -22,7 +22,7 @@ public class ModPlacedFeatures {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         register(context, STARFISH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STARFISH_KEY),
-                RarityFilterPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+                RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
     }
 
     public static RegistryKey<PlacedFeature> registryKey(String name){

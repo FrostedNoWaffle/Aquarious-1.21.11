@@ -2,7 +2,6 @@ package net.frosted.aquarious.world;
 
 import net.frosted.aquarious.Aquarious;
 import net.frosted.aquarious.block.ModBlocks;
-import net.frosted.aquarious.block.custom.Starfish;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -20,7 +19,8 @@ public class ModConfiguredFeatures {
         register(context, STARFISH_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(
                         Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.STARFISH)))
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.STARFISH.getDefaultState()
+                                .rotate(BlockRotation.random(Random.create())))))
                 );
     }
 

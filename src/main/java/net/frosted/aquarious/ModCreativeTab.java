@@ -25,7 +25,6 @@ public class ModCreativeTab {
 
 
 
-
                     }).build());
 
     public static void registerCreativeTab(){
