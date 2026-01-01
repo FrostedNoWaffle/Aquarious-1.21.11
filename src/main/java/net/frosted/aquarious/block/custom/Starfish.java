@@ -6,12 +6,10 @@ import net.minecraft.block.enums.BlockFace;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -21,19 +19,18 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 import org.jspecify.annotations.Nullable;
 
-import java.util.Optional;
-
 public class Starfish extends HorizontalFacingBlock implements Waterloggable {
     public static final MapCodec<Starfish> CODEC = createCodec(Starfish::new);
     public static final EnumProperty<BlockFace> FACE = Properties.BLOCK_FACE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
-    private static final VoxelShape UP_SHAPE = Block.createCuboidShape(3, 0, 3, 13, 2, 13);
-    private static final VoxelShape DOWN_SHAPE = Block.createCuboidShape(3, 14, 3, 13, 16, 13);
-    private static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0, 3, 3, 2, 13, 13);
-    private static final VoxelShape WEST_SHAPE = Block.createCuboidShape(14, 3, 3, 16, 13, 13);
-    private static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(3, 3, 0, 13, 13, 2);
-    private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(3, 3, 14, 13, 13, 16);
+    private static final VoxelShape UP_SHAPE = Block.createCuboidShape(4, 0, 4, 12, 1, 12);
+    private static final VoxelShape DOWN_SHAPE = Block.createCuboidShape(4, 15, 4, 12, 16, 12);
+    private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(4, 4, 15, 12, 12, 16);
+    private static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(4, 4, 0, 12, 12, 1);
+    private static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0, 4, 4, 1, 12, 12);
+    private static final VoxelShape WEST_SHAPE = Block.createCuboidShape(15, 4, 4, 16, 12, 12);
+
 
     public Starfish(Settings settings) {
         super(settings);
@@ -109,14 +106,11 @@ public class Starfish extends HorizontalFacingBlock implements Waterloggable {
     }
 
     protected static Direction getDirection(BlockState state) {
-        switch ((BlockFace)state.get(FACE)) {
-            case CEILING:
-                return Direction.DOWN;
-            case FLOOR:
-                return Direction.UP;
-            default:
-                return state.get(FACING);
-        }
+        return switch (state.get(FACE)) {
+            case CEILING -> Direction.DOWN;
+            case FLOOR -> Direction.UP;
+            default -> state.get(FACING);
+        };
     }
 
     @Override
